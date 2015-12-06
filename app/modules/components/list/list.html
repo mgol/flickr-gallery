@@ -1,0 +1,11 @@
+<section>
+    <ul ng-if="!error">
+        <fg-photo ng-repeat="photoData in fgList.photosData"
+                  id="photoData.id"
+                  title="photoData.title"
+                  url="photoData.url"></fg-photo>
+    </ul>
+    <div ng-if="error"
+         class="message">An error occured. Please try again.
+    </div>
+</section>

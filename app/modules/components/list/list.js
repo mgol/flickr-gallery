@@ -1,0 +1,29 @@
+(function () {
+    'use strict';
+
+    angular
+        .module('fgList', [
+            'fgComponentize',
+            'fgGetPhotosData',
+            'fgPhoto',
+        ])
+
+        .directive('fgList', function (fgComponentize, fgGetPhotosData) {
+            return fgComponentize({
+                name: 'fgList',
+                templateUrl: '/modules/components/list/list.html',
+                bindings: {},
+                controller: function () {
+                    var ctrl = this;
+
+                    fgGetPhotosData()
+                        .then(function (data) {
+                            ctrl.photosData = data;
+                        })
+                        .catch(function () {
+                            ctrl.error = true;
+                        });
+                },
+            });
+        });
+})();
