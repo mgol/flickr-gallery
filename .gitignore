@@ -1,0 +1,12 @@
+/node_modules/
+
+/app/vendor/npm
+/test/unit/vendor/npm
+
+/app/styles.scss
+/app/*.css
+/app/*.css.map
+
+/app/index.html
+
+*.log

@@ -1,0 +1,18 @@
+{
+    "extends": "mzgol",
+
+    "root": true,
+
+    "env": {
+        "node": true
+    },
+
+    "rules": {
+        // Rules are divided into sections from http://eslint.org/docs/rules/
+
+        // ECMAScript 6
+        // Disable constructs not supported by Node.js 4.
+        "prefer-spread": 0,
+        "prefer-reflect": 0
+    }
+}
