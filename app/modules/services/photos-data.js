@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('fgGetPhotosData', [
+        .module('fgPhotosData', [
             'fgApi',
         ])
 
-        .factory('fgGetPhotosData', function (fgApi) {
-            return function fgGetPhotosData() {
+        .service('fgPhotosData', function (fgApi) {
+            this.getLatest = function () {
                 return fgApi
                     .getData()
                     .then(function (data) {

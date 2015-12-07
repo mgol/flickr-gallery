@@ -1,8 +1,5 @@
 'use strict';
 
-const path = require('path');
-const serveStatic = require('serve-static');
-
 module.exports = grunt => {
     require('time-grunt')(grunt);
 
@@ -12,165 +9,17 @@ module.exports = grunt => {
     require('jit-grunt')(grunt, {});
 
     grunt.initConfig({
-        autoprefixer: {
-            app: {
-                options: {
-                    browsers: [
-                        'last 2 Chrome versions',
-                        'last 2 Firefox versions',
-                        'last 2 Edge versions',
-                        'Safari >= 9',
-                        'IE 11',
-
-                        'iOS >= 7',
-                        'last 2 ChromeAndroid versions',
-                        'last 2 FirefoxAndroid versions',
-                    ],
-                    cascade: false,
-                    map: true,
-
-                    // Don't remove outdated prefixes from the source CSS; we're not putting them
-                    // there anyway unless we know they're needed. Setting it to `false` speeds up
-                    // the task a little.
-                    remove: false,
-                },
-                files: {
-                    'app/styles.css': ['app/styles-unprefixed.css'],
-                },
-            },
-        },
-
-        clean: {
-            all: {
-                src: [
-                    'app/styles.scss',
-                    'app/styles.css{,.map}',
-                    'app/vendor/npm',
-                    'app/index.html',
-
-                    'test/unit/vendor/npm',
-                ],
-            },
-        },
-
-        connect: {
-            options: {
-                // Change this to 'localhost' to disable access to the server from outside.
-                hostname: '0.0.0.0',
-                port: 8500,
-            },
-
-            app: {
-                options: {
-                    middleware() {
-                        return [
-                            serveStatic(path.resolve('app')),
-                        ];
-                    },
-                },
-            },
-        },
-
-        eslint: {
-            all: {
-                src: [
-                    '*.js',
-                    'app/**/*.js',
-                    '!app/vendor/**/*.js',
-                    'test/unit/**/*.js',
-                    '!test/unit/vendor/**/*.js',
-                ],
-            },
-        },
-
-        includeSource: {
-            options: {
-                basePath: 'app',
-                baseUrl: '.',
-                templates: {
-                    html: {
-                        js: '<script src="{filePath}"></script>',
-                        css: '<link rel="stylesheet" href="{filePath}">',
-                    },
-                },
-            },
-            app: {
-                files: {
-                    'app/index.html': ['app/index-source.html'],
-                },
-            },
-        },
-
-        npmcopy: {
-            options: {
-                destPrefix: 'app/vendor/npm',
-            },
-            'angular-mocks': {
-                options: {
-                    destPrefix: 'test/unit/vendor/npm',
-                },
-                files: {
-                    'angular-mocks.js': ['angular-mocks/angular-mocks.js'],
-                },
-            },
-            angular: {
-                files: {
-                    'angular.js': ['angular/angular.js'],
-                },
-            },
-        },
-
-        sass: {
-            options: {
-                sourceMap: true,
-                style: 'nested',
-            },
-            all: {
-                files: {
-                    'app/styles-unprefixed.css': 'app/styles.scss',
-                },
-            },
-        },
-
-        sassGenerateImports: {
-            options: {
-                baseDir: '../', // main project directory
-            },
-
-            app: {
-                files: {
-                    'app/styles.scss': [
-                        'app/_core-imports.scss',
-                        'app/modules/**/_*.scss',
-                    ],
-                },
-            },
-        },
-
-        watch: {
-            eslint: {
-                files: '<%= eslint.all.src %>',
-                tasks: ['newer:eslint:all'],
-            },
-            includeSource: {
-                files: ['app/index-source.html'],
-                tasks: ['includeSource'],
-            },
-            styles: {
-                files: ['app/**/*.scss'],
-                tasks: ['styles'],
-            },
-            livereload: {
-                options: {
-                    livereload: true,
-                },
-                files: [
-                    '*',
-                    'app/**/*',
-                ],
-                tasks: [], // without this parameter it doesn't work
-            },
-        },
+        autoprefixer: require('./grunt/config/autoprefixer'),
+        clean: require('./grunt/config/clean'),
+        connect: require('./grunt/config/connect'),
+        eslint: require('./grunt/config/eslint'),
+        includeSource: require('./grunt/config/include-source'),
+        jsonlint: require('./grunt/config/jsonlint'),
+        karma: require('./grunt/config/karma'),
+        npmcopy: require('./grunt/config/npmcopy'),
+        sass: require('./grunt/config/sass'),
+        sassGenerateImports: require('./grunt/config/sass-generate-imports'),
+        watch: require('./grunt/config/watch'),
     });
 
 //    grunt.registerTask('fixSourceMap', () => {
@@ -206,6 +55,7 @@ module.exports = grunt => {
     );
 
     grunt.registerTask('lint', [
+        'jsonlint',
         'eslint',
     ]);
 
@@ -234,6 +84,7 @@ module.exports = grunt => {
         'lint',
         'build',
         'connect',
+        'karma:backgroundUnit',
         'watch',
     ]);
 

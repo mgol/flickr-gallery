@@ -4,11 +4,11 @@
     angular
         .module('fgList', [
             'fgComponentize',
-            'fgGetPhotosData',
             'fgPhoto',
+            'fgPhotosData',
         ])
 
-        .directive('fgList', function (fgComponentize, fgGetPhotosData) {
+        .directive('fgList', function (fgComponentize, fgPhotosData) {
             return fgComponentize({
                 name: 'fgList',
                 templateUrl: '/modules/components/list/list.html',
@@ -16,7 +16,7 @@
                 controller: function () {
                     const ctrl = this;
 
-                    fgGetPhotosData()
+                    fgPhotosData.getLatest()
                         .then(function (data) {
                             ctrl.photosData = data;
                         })

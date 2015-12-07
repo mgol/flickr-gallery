@@ -1,0 +1,37 @@
+{
+    "BS_Chrome": {
+        "base": "BrowserStack",
+        "browser": "chrome",
+        "browser_version": "46.0",
+        "os": "Windows",
+        "os_version": "10"
+    },
+    "BS_Firefox": {
+        "base": "BrowserStack",
+        "browser": "firefox",
+        "browser_version": "42.0",
+        "os": "Windows",
+        "os_version": "10"
+    },
+    "BS_Safari": {
+        "base": "BrowserStack",
+        "browser": "safari",
+        "browser_version": "9.0",
+        "os": "OS X",
+        "os_version": "El Capitan"
+    },
+    "BS_IE_11": {
+        "base": "BrowserStack",
+        "browser": "ie",
+        "browser_version": "11.0",
+        "os": "Windows",
+        "os_version": "10"
+    },
+    "BS_Edge_12": {
+        "base": "BrowserStack",
+        "browser": "edge",
+        "browser_version": "12.0",
+        "os": "Windows",
+        "os_version": "10"
+    }
+}
