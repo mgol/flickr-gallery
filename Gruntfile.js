@@ -102,6 +102,11 @@ module.exports = grunt => {
         );
     });
 
+    grunt.registerTask('test', [
+        'build',
+        'karma:unit',
+    ]);
+
     grunt.registerTask('default', [
         'lint',
         'build',
