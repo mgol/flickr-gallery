@@ -14,7 +14,7 @@
                 templateUrl: '/modules/components/list/list.html',
                 bindings: {},
                 controller: function () {
-                    var ctrl = this;
+                    const ctrl = this;
 
                     fgGetPhotosData()
                         .then(function (data) {
