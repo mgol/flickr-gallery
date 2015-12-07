@@ -27,3 +27,9 @@ grunt build
 ```
 
 After building, the app can be run via a static server in the directory `app`.
+
+To run tests in Chrome & Firefox use:
+
+```
+grunt test
+```
