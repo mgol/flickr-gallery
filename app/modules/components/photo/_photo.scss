@@ -1,3 +1,12 @@
 fg-photo {
+    display: flex;
 
+    .img-container {
+        display: flex;
+
+        border: 3px dashed transparent;
+        &.selected {
+            border-color: green;
+        }
+    }
 }
