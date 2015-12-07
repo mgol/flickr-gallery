@@ -33,3 +33,7 @@ To run tests in Chrome & Firefox use:
 ```
 grunt test
 ```
+
+## Browser support
+
+The project was tested on Chrome 47, Firefox 42 and Internet Explorer 11.
