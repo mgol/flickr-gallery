@@ -1,3 +1,13 @@
 fg-list {
+    .photos-list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
 
+        > * {
+            flex: none;
+            margin: 10px;
+        }
+    }
 }

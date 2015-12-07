@@ -79,14 +79,28 @@ module.exports = grunt => {
         'includeSource',
     ]);
 
-    grunt.registerTask('serve', [
-        'clean',
-        'lint',
-        'build',
-        'connect',
-        'karma:backgroundUnit',
-        'watch',
-    ]);
+    grunt.registerTask('serve', param => {
+        // It's not possible to delete a config property. Setting the watched files collection
+        // to be empty solves the problem as well.
+        if (param === 'notTested') {
+            grunt.config(['watch', 'karma', 'files'], []);
+        }
+
+        grunt.task.run([]
+            .concat([
+                'clean',
+                'lint',
+                'build',
+                'connect',
+            ])
+            .concat(param === 'notTested' ? [] : [
+                'karma:backgroundUnit',
+            ])
+            .concat([
+                'watch',
+            ])
+        );
+    });
 
     grunt.registerTask('default', [
         'lint',

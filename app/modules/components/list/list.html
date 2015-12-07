@@ -1,6 +1,9 @@
 <section>
-    <ul ng-if="!error">
-        <fg-photo ng-repeat="photoData in fgList.photosData"
+    <h1>Choose your favorite photos!</h1>
+
+    <ul ng-if="!error"
+        class="photos-list">
+        <fg-photo ng-repeat="photoData in fgList.photosData track by photoData.id"
                   id="photoData.id"
                   title="photoData.title"
                   url="photoData.url"></fg-photo>
