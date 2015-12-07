@@ -17,6 +17,7 @@ module.exports = function (config) {
             'test/unit/vendor/npm/angular-mocks.js',
 
             'test/unit/mock-data/**/*.json',
+            'app/lib/**/*.js',
             'app/modules/**/*.js',
             'test/unit/spec/**/*.js',
         ],

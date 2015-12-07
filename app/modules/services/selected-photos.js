@@ -13,7 +13,10 @@
                     // Ensure the null prototype when getting.
                     return Object.assign(
                         Object.create(null),
-                        JSON.parse($window.localStorage.getItem(fgSelectedPhotosLocaleStorageKey))
+                        JSON.parse(
+                            $window.localStorage.getItem(fgSelectedPhotosLocaleStorageKey) ||
+                                'null'
+                        )
                     );
                 };
                 this.set = function (data) {
