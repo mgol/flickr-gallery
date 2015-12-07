@@ -44,7 +44,9 @@
 
             this.getAll = function () {
                 const photosArray = [];
-                for (let id in photos) {
+                var id;
+
+                for (id in photos) {
                     photosArray.push(photos[id]);
                 }
                 return photosArray;

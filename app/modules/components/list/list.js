@@ -15,7 +15,7 @@
                 templateUrl: '/modules/components/list/list.html',
                 bindings: {},
                 controller: function () {
-                    const ctrl = this;
+                    var ctrl = this;
 
                     ctrl.photosData = fgSelectedPhotos.getAll();
                     const ids = fgSelectedPhotos.getAllIds();

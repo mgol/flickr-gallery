@@ -4,14 +4,14 @@ describe('Module: fgPhotosData', function () {
     beforeEach(module('fgPhotosData'));
     beforeEach(module('test/unit/mock-data/flickr-api.json'));
 
-    let $httpBackend, $rootScope;
+    var $httpBackend, $rootScope;
     beforeEach(inject(function (_$httpBackend_, _$rootScope_) {
         $rootScope = _$rootScope_;
         $httpBackend = _$httpBackend_;
     }));
 
     describe('Service: fgPhotosData', function () {
-        let fgPhotosData, testUnitMockDataFlickrApi;
+        var fgPhotosData, testUnitMockDataFlickrApi;
         beforeEach(inject(function (_fgPhotosData_, _testUnitMockDataFlickrApi_,
                                     fgConfigFlickrGalleryUrl) {
             fgPhotosData = _fgPhotosData_;
@@ -28,7 +28,7 @@ describe('Module: fgPhotosData', function () {
             });
 
             describe('results', function () {
-                let results;
+                var results;
                 beforeEach(function () {
                     fgPhotosData.getLatest().then(function (data) {
                         results = data;
@@ -42,8 +42,10 @@ describe('Module: fgPhotosData', function () {
                 });
 
                 it('should attach only the fields id, title & url on every item', function () {
-                    let counter = 0;
-                    for (let entry of results) {
+                    var counter = 0;
+                    var entry;
+
+                    for (entry of results) {
                         expect(entry.id).toBeDefined();
                         expect(entry.title).toBeDefined();
                         expect(entry.url).toBeDefined();
